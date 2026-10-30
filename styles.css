@@ -35,7 +35,8 @@ p { margin: 0; }
 :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 
-#pole { position: fixed; inset: 0; width: 100%; height: 100svh; z-index: 1; pointer-events: none; }
+#pole { position: fixed; inset: 0; width: 100%; height: 100svh; z-index: 1; pointer-events: none; opacity: 0; transition: opacity .5s; }
+#pole.on { opacity: 1; }
 
 #pole-flat {
   position: fixed; z-index: 1; right: 10vw; top: 7svh; height: 86svh; width: auto; pointer-events: none;

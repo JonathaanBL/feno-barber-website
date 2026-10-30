@@ -129,42 +129,56 @@ function onScroll() {
   pole.scroll(y, vh);
 }
 
-/* The pole */
+/* The pole: the drawn one shows at once, the 3D one replaces it when the browser is free */
 const canvas = $('#pole');
-const pole = { scroll() {} };
+const flat = $('#pole-flat');
+const stageEnd = () => { const st = $('.stage'); return st.offsetTop + st.offsetHeight; };
+const flatScroll = y => { flat.style.visibility = y < stageEnd() ? 'visible' : 'hidden'; };
+const pole = { scroll: flatScroll };
 addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
-function flatPole() {
+function keepFlat() {
   canvas.remove();
-  const flat = $('#pole-flat');
-  const stage = $('.stage');
-  flat.removeAttribute('hidden'); // SVG elements have no .hidden property
-  pole.scroll = y => { flat.style.visibility = y < stage.offsetTop + stage.offsetHeight ? 'visible' : 'hidden'; };
+  flat.removeAttribute('hidden');
+  pole.scroll = flatScroll;
   onScroll();
 }
 
-(async () => {
-  let THREE, RoomEnvironment;
-  try {
-    THREE = await import('three');
-    ({ RoomEnvironment } = await import('three/addons/environments/RoomEnvironment.js'));
-  } catch { flatPole(); return; }
+// a matcap paints metal and glass from one small image, with no lighting maths per pixel
+function matcapImage(THREE, horizontal, stops) {
+  const c = document.createElement('canvas');
+  c.width = c.height = 128;
+  const g = c.getContext('2d');
+  const ramp = horizontal ? g.createLinearGradient(0, 0, 128, 0) : g.createLinearGradient(0, 0, 0, 128);
+  stops.forEach(([at, colour]) => ramp.addColorStop(at, colour));
+  g.fillStyle = ramp;
+  g.fillRect(0, 0, 128, 128);
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  return tex;
+}
 
+async function startPole() {
+  let THREE;
+  try { THREE = await import('three'); }
+  catch { keepFlat(); return; }
+
+  const small = innerWidth < 800;
+  const dpr = devicePixelRatio || 1;
   let renderer;
-  try { renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true }); }
-  catch { flatPole(); return; }
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  try { renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: dpr < 2 }); }
+  catch { keepFlat(); return; }
+  renderer.setPixelRatio(Math.min(dpr, small ? 1.5 : 2));
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
 
   const scene = new THREE.Scene();
-  scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(), .04).texture;
   const camera = new THREE.PerspectiveCamera(32, 1, .1, 100);
 
   // stripes: Chile's red, white and blue, with its star riding the blue band
   const c = document.createElement('canvas');
-  c.width = c.height = 1024;
+  c.width = c.height = small ? 512 : 1024;
   const g = c.getContext('2d');
   const bands = ['#c4121a', '#f4f1ea', '#0f3b8c', '#f4f1ea'];
   const band = c.width / bands.length;
@@ -190,31 +204,39 @@ function flatPole() {
     g.fill();
   };
   // blue band is index 2: its centre line crosses the top edge at 2.5 bands, running down-left
-  for (const f of [.25, .75]) star(((2.5 * band + c.width * (1 - f)) % c.width), c.height * f, 62);
+  for (const f of [.25, .75]) star(((2.5 * band + c.width * (1 - f)) % c.width), c.height * f, c.width * .06);
   const tex = new THREE.CanvasTexture(c);
   tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
   tex.repeat.set(1, 1.5);
   tex.colorSpace = THREE.SRGBColorSpace;
-  tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+  tex.anisotropy = Math.min(4, renderer.capabilities.getMaxAnisotropy());
 
+  const sides = small ? 40 : 64;
   const group = new THREE.Group();
   scene.add(group);
   const stripes = new THREE.Mesh(
-    new THREE.CylinderGeometry(.5, .5, 3.6, 64, 1, true),
-    new THREE.MeshPhysicalMaterial({ map: tex, roughness: .28, clearcoat: 1, clearcoatRoughness: .08, emissive: 0xffffff, emissiveMap: tex, emissiveIntensity: .42 })
+    new THREE.CylinderGeometry(.5, .5, 3.6, sides, 1, true),
+    new THREE.MeshLambertMaterial({ map: tex, emissive: 0xffffff, emissiveMap: tex, emissiveIntensity: .42 })
   );
   group.add(stripes);
+  // the glass only adds its highlights on top of the stripes
   const glass = new THREE.Mesh(
-    new THREE.CylinderGeometry(.56, .56, 3.6, 64, 1, true),
-    new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: .02, metalness: 0, transparent: true, opacity: .13, envMapIntensity: 2.2 })
+    new THREE.CylinderGeometry(.56, .56, 3.6, sides, 1, true),
+    new THREE.MeshMatcapMaterial({
+      matcap: matcapImage(THREE, true, [[0, '#000'], [.2, '#000'], [.27, '#8a8a8a'], [.33, '#000'], [.72, '#000'], [.8, '#2a2a2a'], [.9, '#000'], [1, '#000']]),
+      transparent: true, depthWrite: false,
+      blending: THREE.CustomBlending, blendSrc: THREE.OneFactor, blendDst: THREE.OneFactor, blendSrcAlpha: THREE.ZeroFactor, blendDstAlpha: THREE.OneFactor // adds colour only: the rim stays see-through
+    })
   );
   group.add(glass);
 
   // turned chrome caps: a profile spun around the pole's axis
-  const chrome = new THREE.MeshStandardMaterial({ color: 0xe8e8e8, metalness: 1, roughness: .13 });
+  const chrome = new THREE.MeshMatcapMaterial({
+    matcap: matcapImage(THREE, true, [[0, '#2b2b2b'], [.16, '#f7f7f7'], [.3, '#6a6a6a'], [.5, '#dcdcdc'], [.68, '#454545'], [.86, '#ffffff'], [1, '#333333']])
+  });
   const profile = [[0, 0], [.62, 0], [.62, .06], [.56, .1], [.56, .2], [.66, .25], [.66, .31], [.48, .4], [.34, .5], [.3, .62], [.22, .7], [.2, .74], [.26, .84], [.2, .95], [0, 1]]
     .map(([x, y]) => new THREE.Vector2(x, y));
-  const lathe = new THREE.LatheGeometry(profile, 64);
+  const lathe = new THREE.LatheGeometry(profile, sides);
   const top = new THREE.Mesh(lathe, chrome);
   top.position.y = 1.8;
   const bottom = new THREE.Mesh(lathe, chrome);
@@ -227,8 +249,8 @@ function flatPole() {
   key.position.set(3, 5, 6);
   scene.add(key);
 
-  const hero = $('.hero'), stage = $('.stage');
-  let progress = 0, spin = 0, px = 0, py = 0, tx = 0, ty = 0, visible = true;
+  const hero = $('.hero');
+  let progress = 0, spin = 0, px = 0, py = 0, tx = 0, ty = 0, visible = true, running = false;
 
   function size() {
     const w = canvas.clientWidth, h = canvas.clientHeight;
@@ -258,26 +280,57 @@ function flatPole() {
     stripes.rotation.y = spin;
     renderer.render(scene, camera);
   }
+
+  const frameMs = small ? 33 : 16; // 30 fps is plenty for a pole on a phone
+  let last = 0, frames = 0, sampled = 0, slowTotal = 0;
   function loop(now) {
-    if (visible) {
-      spin = now * .00045 + scrollY * .0035;
-      px += (tx - px) * .06;
-      py += (ty - py) * .06;
-      draw();
+    if (!visible) { running = false; return; }
+    requestAnimationFrame(loop);
+    if (now - last < frameMs - 2) return;
+    const gap = now - last;
+    last = now;
+    // a device that cannot keep up goes back to the drawn pole; the first frames and tab switches don't count
+    if (++frames > 3 && sampled < 30 && gap < 1000) {
+      sampled++;
+      slowTotal += gap;
+      if (sampled === 30 && slowTotal / 30 > 80) {
+        visible = false;
+        keepFlat();
+        renderer.dispose();
+        return;
+      }
     }
+    spin = now * .00045 + scrollY * .0035;
+    px += (tx - px) * .06;
+    py += (ty - py) * .06;
+    draw();
+  }
+  function run() {
+    if (still || running) return;
+    running = true;
     requestAnimationFrame(loop);
   }
+
   pole.scroll = (y, vh) => {
     const h = hero.offsetHeight;
     progress = y < h ? y / h : 1 + (y - h) / vh;
-    visible = y < stage.offsetTop + stage.offsetHeight;
+    visible = y < stageEnd();
     canvas.style.visibility = visible ? 'visible' : 'hidden';
     if (still) draw();
+    else if (visible) run();
   };
   onScroll();
-  if (still) draw();
-  else {
-    addEventListener('pointermove', e => { tx = e.clientX / innerWidth * 2 - 1; ty = e.clientY / innerHeight * 2 - 1; }, { passive: true });
-    requestAnimationFrame(loop);
-  }
-})();
+  draw();
+  canvas.classList.add('on');
+  setTimeout(() => { if (canvas.isConnected) flat.setAttribute('hidden', ''); }, 600);
+  if (!still) addEventListener('pointermove', e => { tx = e.clientX / innerWidth * 2 - 1; ty = e.clientY / innerHeight * 2 - 1; }, { passive: true });
+  run();
+}
+
+// data-saver and very low-memory phones keep the drawn pole
+if (!navigator.connection?.saveData && !(navigator.deviceMemory <= 2)) {
+  addEventListener('load', () => {
+    if ('requestIdleCallback' in window) requestIdleCallback(startPole, { timeout: 2500 });
+    else setTimeout(startPole, 1200);
+  });
+}

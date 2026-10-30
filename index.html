@@ -30,11 +30,12 @@
 </head>
 <body>
 <canvas id="pole" aria-hidden="true"></canvas>
-<svg id="pole-flat" viewBox="0 0 120 520" aria-hidden="true" hidden>
+<svg id="pole-flat" viewBox="0 0 120 520" aria-hidden="true">
   <defs>
     <pattern id="stripes" width="120" height="240" patternUnits="userSpaceOnUse" patternTransform="skewY(-35)">
       <rect width="120" height="60" fill="#c4121a"/><rect y="60" width="120" height="60" fill="#f4f1ea"/>
       <rect y="120" width="120" height="60" fill="#0f3b8c"/><rect y="180" width="120" height="60" fill="#f4f1ea"/>
+      <path fill="#f4f1ea" d="M60 134l4.4 9.6 10.6 1.2-7.9 7.1 2.2 10.4-9.3-5.3-9.3 5.3 2.2-10.4-7.9-7.1 10.6-1.2z"/>
     </pattern>
     <clipPath id="tube"><rect x="16" y="50" width="88" height="420"/></clipPath>
   </defs>

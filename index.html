@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fernando Barber | Barbero en Jackson Heights, Queens</title>
+<title>Ferxo | Barbero en Jackson Heights, Queens</title>
 <meta name="description" content="Fades, líneas, barba y toalla caliente con Fernando Guerrero en 35-60 94th St, Jackson Heights, Queens. Solo con cita, por Booksy.">
-<meta property="og:title" content="Fernando Barber | Jackson Heights, Queens">
+<meta property="og:title" content="Ferxo | Barbero en Jackson Heights, Queens">
 <meta property="og:description" content="Fades, líneas y barba. Solo con cita. 4,9 en Booksy.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://jonathaanbl.github.io/feno-barber-website/">
@@ -19,10 +19,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:wdth,wght@75..150,300..900&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/hero-poster.webp">
 <link rel="stylesheet" href="styles.css">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BarberShop","name":"Fernando Barber","employee":"Fernando Guerrero","image":"https://jonathaanbl.github.io/feno-barber-website/assets/og.jpg","priceRange":"$$",
+{"@context":"https://schema.org","@type":"BarberShop","name":"Ferxo","alternateName":"Fernando Barber","employee":"Fernando Guerrero","image":"https://jonathaanbl.github.io/feno-barber-website/assets/og.jpg","priceRange":"$$",
 "address":{"@type":"PostalAddress","streetAddress":"35-60 94th St","addressLocality":"Jackson Heights","addressRegion":"NY","postalCode":"11372","addressCountry":"US"},
 "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"70"},
 "url":"https://jonathaanbl.github.io/feno-barber-website/","sameAs":["https://fernandobarberrr25.booksy.com/a","https://www.instagram.com/fernando_barberrr25/"]}
@@ -51,18 +52,16 @@
 </nav>
 
 <header class="hero">
-  <div class="hero__clip"><img class="hero__room" src="assets/hero-900.webp" srcset="assets/hero-480.webp 480w, assets/hero-900.webp 900w, assets/hero-1400.webp 1400w, assets/hero-1754.webp 1754w" sizes="(max-width: 800px) 200vw, 100vw" width="1754" height="986" data-en-alt="Fernando cutting a client's platinum hair, with a ring light on his cap" alt="Fernando cortando el pelo a un cliente de pelo platinado, con luz de aro sobre la gorra" fetchpriority="high"></div>
-  <div class="card" id="card">
-    <h1 class="card__title"><span>Fernando</span> <span>Barber</span> <span>Queens</span></h1>
-    <div class="card__body">
-      <p class="card__facts">35-60 94th St<br>Jackson Heights<br><span data-open>Solo con cita</span></p>
-      <p class="card__line" data-en="Fades, line ups and beards in Jackson Heights. By appointment only.">Fades, líneas y barba en Jackson Heights. Solo con cita.</p>
+  <video class="hero__video" src="assets/hero-reel.mp4" poster="assets/hero-poster.webp" width="540" height="960" preload="none" muted loop playsinline aria-label="Montaje de fotos de cortes de Fernando, sin sonido" data-en-aria="Silent montage of photos of Fernando's cuts"></video>
+  <div class="hero__copy" id="heroCopy">
+    <p class="hero__route">Chile → Queens</p>
+    <h1 class="hero__name"><span class="hero__letters" aria-hidden="true"><span>F</span><span>E</span><span>R</span><span>X</span><span>O</span></span><span class="sr" data-en="Ferxo, barber in Queens">Ferxo, barbero en Queens</span></h1>
+    <p class="hero__line" data-en="Barber in Jackson Heights. Fades, line ups and designs, by appointment only.">Barbero en Jackson Heights. Fades, líneas y diseños, solo con cita.</p>
+    <div class="hero__act">
+      <a class="btn" href="https://fernandobarberrr25.booksy.com/a" data-en="Book on Booksy">Reservar en Booksy</a>
+      <a class="link" href="#trabajo" data-en="See the cuts">Ver los cortes</a>
     </div>
-    <div class="card__foot">
-      <p data-en="4.9 from 70 reviews">4,9 de 70 reseñas</p>
-      <a class="btn btn--ink" href="https://fernandobarberrr25.booksy.com/a" data-en="Book on Booksy">Reservar en Booksy</a>
-      <a class="link" href="https://www.instagram.com/fernando_barberrr25/">Instagram</a>
-    </div>
+    <p class="hero__facts"><span data-en="4.9 from 70 reviews">4,9 de 70 reseñas</span><span data-open>Solo con cita</span><span>35-60 94th St</span></p>
   </div>
 </header>
 
@@ -175,7 +174,7 @@
   </section>
 
   <section class="stagework" aria-labelledby="stagework-title">
-    <video class="reel" src="assets/reel.mp4" poster="assets/reel-poster.webp" width="720" height="1280" preload="none" muted loop playsinline aria-label="Montaje de cortes de Fernando, sin sonido" data-en-aria="Silent montage of Fernando's cuts"></video>
+    <img class="stagework__pic" src="assets/s26-900.webp" srcset="assets/s26-480.webp 480w, assets/s26-900.webp 900w, assets/s26-1400.webp 1400w" sizes="(max-width: 800px) 100vw, 38vw" loading="lazy" width="1755" height="2340" data-en-alt="Fernando cutting on stage in front of a painted backdrop" alt="Fernando cortando sobre un escenario, frente a un fondo pintado">
     <div class="stagework__text">
       <h2 id="stagework-title" data-en="Also on stage">También sobre el escenario</h2>
       <p data-en="Between appointments he takes the chair to the barber expos of New York, New Jersey and Long Island, and cuts with people watching.">Entre cita y cita lleva la silla a las expos de barberos de Nueva York, Nueva Jersey y Long Island, y corta con gente mirando.</p>

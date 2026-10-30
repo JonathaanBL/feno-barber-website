@@ -9,7 +9,7 @@ let lang = 'es';
 const texts = $$('[data-en]').map(el => ({ el, es: el.textContent, en: el.dataset.en }));
 const alts = $$('[data-en-alt]').map(el => ({ el, es: el.alt, en: el.dataset.enAlt }));
 const arias = $$('[data-en-aria]').map(el => ({ el, es: el.getAttribute('aria-label'), en: el.dataset.enAria }));
-const titles = { es: document.title, en: 'Fernando Barber | Barber in Jackson Heights, Queens' };
+const titles = { es: document.title, en: 'Ferxo | Barber in Jackson Heights, Queens' };
 const langBtn = $('#lang');
 function setLang(next) {
   lang = next;
@@ -77,15 +77,17 @@ let savedLang = null;
 try { savedLang = localStorage.getItem('lang'); } catch {}
 setLang(savedLang === 'en' ? 'en' : 'es');
 
-/* The reel only downloads and plays while it is near the screen */
-const reel = $('.reel');
-if (!still) new IntersectionObserver(([e]) => {
-  if (e.isIntersecting) reel.play().catch(() => {});
-  else reel.pause();
-}, { rootMargin: '200px' }).observe(reel);
+/* The hero video waits for the page, plays only while on screen, and never spends a data-saver's data */
+const reel = $('.hero__video');
+if (!still && !navigator.connection?.saveData) addEventListener('load', () => {
+  new IntersectionObserver(([e]) => {
+    if (e.isIntersecting) reel.play().catch(() => {});
+    else reel.pause();
+  }).observe(reel);
+});
 
 /* Entrances: each part of a section rises in turn */
-const parts = 'h2, h3, .step p, .stair, .statement__note, .statement__pics img, .ritual__text p, .ritual__list, .ritual > img, .prices__side img, .menu fieldset, .reel, .stagework__text p, .stagework__text img, blockquote, .extras img, .extras p, .extras .link, .visit__card, .row img';
+const parts = 'h2, h3, .step p, .stair, .statement__note, .statement__pics img, .ritual__text p, .ritual__list, .ritual > img, .prices__side img, .menu fieldset, .stagework__pic, .stagework__text p, .stagework__text img, blockquote, .extras img, .extras p, .extras .link, .visit__card, .row img';
 const seen = new IntersectionObserver(es => es.forEach(e => {
   if (e.isIntersecting) { e.target.classList.add('in'); seen.unobserve(e.target); }
 }), { rootMargin: '0px 0px -8% 0px' });
@@ -104,8 +106,8 @@ const endDrag = () => { dragX = null; row.classList.remove('dragging'); };
 row.addEventListener('pointerup', endDrag);
 row.addEventListener('pointercancel', endDrag);
 
-/* Hero card shrinks into the booking stub */
-const card = $('#card');
+/* The hero copy lifts away and the booking stub takes over */
+const heroCopy = $('#heroCopy');
 const stub = $('#stub');
 const visit = $('#visita');
 const totalBar = $('.total');
@@ -121,9 +123,9 @@ function onScroll() {
   const y = scrollY, vh = innerHeight;
   if (!still) {
     const t = Math.min(y / (vh * .75), 1);
-    card.style.transform = `translateY(${y * .55}px) scale(${1 - t * .62})`;
-    card.style.opacity = t > .85 ? (1 - t) / .15 : 1;
-    card.style.visibility = t >= 1 ? 'hidden' : 'visible';
+    heroCopy.style.transform = `translateY(${y * .18}px)`;
+    heroCopy.style.opacity = 1 - t;
+    heroCopy.style.visibility = t >= 1 ? 'hidden' : 'visible';
   }
   stub.classList.toggle('on', y > vh * .7 && !onTotal && !onVisit && !onQuotes);
   pole.scroll(y, vh);
@@ -133,7 +135,10 @@ function onScroll() {
 const canvas = $('#pole');
 const flat = $('#pole-flat');
 const stageEnd = () => { const st = $('.stage'); return st.offsetTop + st.offsetHeight; };
-const flatScroll = y => { flat.style.visibility = y < stageEnd() ? 'visible' : 'hidden'; };
+const flatScroll = y => {
+  flat.style.visibility = y < stageEnd() ? 'visible' : 'hidden';
+  flat.classList.toggle('big', y > innerHeight * .5);
+};
 const pole = { scroll: flatScroll };
 addEventListener('scroll', onScroll, { passive: true });
 onScroll();
@@ -232,7 +237,7 @@ async function startPole() {
 
   // turned chrome caps: a profile spun around the pole's axis
   const chrome = new THREE.MeshMatcapMaterial({
-    matcap: matcapImage(THREE, true, [[0, '#2b2b2b'], [.16, '#f7f7f7'], [.3, '#6a6a6a'], [.5, '#dcdcdc'], [.68, '#454545'], [.86, '#ffffff'], [1, '#333333']])
+    matcap: matcapImage(THREE, true, [[0, '#555555'], [.2, '#f4f4f4'], [.38, '#8c8c8c'], [.55, '#e2e2e2'], [.72, '#6e6e6e'], [.88, '#ffffff'], [1, '#606060']])
   });
   const profile = [[0, 0], [.62, 0], [.62, .06], [.56, .1], [.56, .2], [.66, .25], [.66, .31], [.48, .4], [.34, .5], [.3, .62], [.22, .7], [.2, .74], [.26, .84], [.2, .95], [0, 1]]
     .map(([x, y]) => new THREE.Vector2(x, y));
@@ -265,17 +270,20 @@ async function startPole() {
   const ease = t => t * t * (3 - 2 * t);
   function draw() {
     const phone = camera.aspect < 1;
-    // 0 = beside the hero card; 1..3 = held through the three stage screens
+    // 0 = small above the name, beside the video (off the top on a phone); 1..3 = held through the three stage screens
     const p = progress;
     const inStage = ease(Math.min(p, 1));
-    const hx = phone ? 0 : 3.15, sx = phone ? 0 : 2.05;
-    const hy = phone ? 1.6 : 0, sy = phone ? 2.4 : 0;
-    const hz = phone ? 19 : 11, sz = phone ? 19 : 8.6;
+    const noRoom = innerWidth <= 800;
+    const hz = noRoom ? 19 : 24, sz = phone ? 19 : 8.6;
+    const seen = hz * .5735; // height of the scene at that distance, from the 32 degree lens
+    const videoShare = Math.min(.5625 / camera.aspect, .44);
+    const hx = noRoom ? 0 : (.5 - videoShare - .075) * seen * camera.aspect, sx = phone ? 0 : 2.05;
+    const hy = noRoom ? seen / 2 + 3.2 : .26 * seen, sy = phone ? 2.4 : 0;
     group.position.x = lerp(hx, sx, inStage);
     group.position.y = lerp(hy, sy, inStage);
     const push = Math.max(p - 1, 0); // moves in on the star, then back out
     camera.position.set(0, 0, lerp(hz, sz, inStage) - Math.sin(Math.min(push / 2, 1) * Math.PI) * (phone ? 0 : 2.6)); // no room to push in over phone text
-    group.rotation.z = lerp(.1, -.06, inStage) + px * .05;
+    group.rotation.z = lerp(.22, -.06, inStage) + px * .05;
     group.rotation.x = py * .05;
     stripes.rotation.y = spin;
     renderer.render(scene, camera);

@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fernando Barber | Barbero en Jackson Heights, Queens</title>
+<meta name="description" content="Fades, líneas, barba y toalla caliente con Fernando Guerrero en 35-60 94th St, Jackson Heights, Queens. Solo con cita, por Booksy.">
+<meta property="og:title" content="Fernando Barber | Jackson Heights, Queens">
+<meta property="og:description" content="Fades, líneas y barba. Solo con cita. 4,9 en Booksy.">
+<meta property="og:image" content="assets/s24.jpg">
+<meta name="theme-color" content="#0f0e0e">
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:wdth,wght@75..150,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BarberShop","name":"Fernando Barber","employee":"Fernando Guerrero","image":"assets/s24.jpg","priceRange":"$$",
+"address":{"@type":"PostalAddress","streetAddress":"35-60 94th St","addressLocality":"Jackson Heights","addressRegion":"NY","postalCode":"11372","addressCountry":"US"},
+"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"70"},
+"url":"https://fernandobarberrr25.booksy.com/a"}
+</script>
+</head>
+<body>
+<canvas id="pole" aria-hidden="true"></canvas>
+
+<nav class="bar" aria-label="Principal">
+  <a href="#trabajo" data-en="Work">Trabajo</a>
+  <a href="#servicios" data-en="Prices">Precios</a>
+  <a href="#visita" data-en="Visit">Visita</a>
+  <button id="lang" type="button" aria-label="Read in English" data-en-label="Leer en español">EN</button>
+</nav>
+
+<header class="hero">
+  <div class="hero__clip"><img class="hero__room" src="assets/hero.jpg" width="1600" height="900" alt="Fernando cortando el pelo a un cliente de pelo platinado, con luz de aro sobre la gorra" fetchpriority="high"></div>
+  <div class="card" id="card">
+    <h1 class="card__title"><span>Fernando</span> <span>Barber</span> <span>Queens</span></h1>
+    <div class="card__body">
+      <p class="card__facts">35-60 94th St<br>Jackson Heights<br><span data-open>Solo con cita</span></p>
+      <p class="card__line" data-en="Fades, line ups and beards in Jackson Heights. By appointment only.">Fades, líneas y barba en Jackson Heights. Solo con cita.</p>
+    </div>
+    <div class="card__foot">
+      <p data-en="4.9 from 70 reviews">4,9 de 70 reseñas</p>
+      <a class="btn btn--ink" href="https://fernandobarberrr25.booksy.com/a" data-en="Book on Booksy">Reservar en Booksy</a>
+      <a class="link" href="https://www.instagram.com/fernando_barberrr25/">Instagram</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="stage" aria-labelledby="stage-title">
+    <div class="step">
+      <h2 id="stage-title" data-en="One pole, two flags">Un poste, dos banderas</h2>
+      <p data-en="Red, white and blue. The colours of the barber pole, and of the Chile that Fernando comes from. That is why this pole carries the star.">Rojo, blanco y azul. Los colores del poste de barbero y los de Chile, de donde viene Fernando. Por eso este poste lleva la estrella.</p>
+      <img src="assets/logo-big.jpg" width="640" height="640" alt="Logo de Fernando Barber, con navaja y dos postes rojos y blancos">
+    </div>
+    <div class="step">
+      <h3 data-en="The other is Queens">La otra es Queens</h3>
+      <p data-en="He works on 94th Street in Jackson Heights, inside Next Level Barbershop by Anllelis. Spanish or English, whichever you speak.">Corta en la calle 94 de Jackson Heights, dentro de Next Level Barbershop by Anllelis. En español o en inglés, como prefieras.</p>
+      <img src="assets/store.jpg" width="1400" height="1693" alt="Fachada del local en la calle 94 de Jackson Heights">
+    </div>
+    <div class="step">
+      <h3 data-en="Your time is yours">Tu hora es tuya</h3>
+      <p data-en="By appointment only. You pick the time on Booksy, you arrive, and a haircut gets its full 40 minutes.">Solo con cita. Eliges la hora en Booksy, llegas, y un corte tiene sus 40 minutos completos.</p>
+      <img src="assets/s24.jpg" width="1400" height="1867" alt="Fernando trabajando un corte platinado, concentrado">
+    </div>
+  </section>
+
+  <section class="statement">
+    <div class="statement__text">
+      <p class="stair"><span data-en="A fade is judged">Un fade se juzga</span><span data-en="from up close, in">de cerca, en el</span><span data-en="the mirror, once">espejo, cuando</span><span data-en="you are already">ya saliste y</span><span data-en="out the door.">nadie te lo arregla.</span></p>
+      <p class="statement__note" data-en="That is why the photos below were taken right after the cut, in the chair.">Por eso las fotos de abajo son recién cortadas, en la silla.</p>
+    </div>
+    <div class="statement__pics">
+      <img src="assets/w27.jpg" loading="lazy" width="900" height="1200" alt="Taper fade limpio visto de costado">
+      <img src="assets/w06.jpg" loading="lazy" width="900" height="1200" alt="Fade alto en la nuca, junto a un tatuaje en el cuello">
+    </div>
+  </section>
+
+  <section class="work" id="trabajo" aria-labelledby="work-title">
+    <h2 id="work-title" data-en="The work, 16 cuts">El trabajo, 16 cortes</h2>
+    <div class="row" tabindex="0" role="group" aria-labelledby="work-title">
+      <img src="assets/w13.jpg" loading="lazy" width="900" height="1200" alt="Low fade con barba delineada">
+      <img src="assets/w05.jpg" loading="lazy" width="900" height="1200" alt="Pelo ondulado con diseño en la nuca">
+      <img src="assets/w23.jpg" loading="lazy" width="900" height="1200" alt="Barba larga con una equis rapada en el costado">
+      <img src="assets/w08.jpg" loading="lazy" width="900" height="1200" alt="Fade con volumen arriba y barba corta">
+      <img src="assets/w31.jpg" loading="lazy" width="900" height="1200" alt="Fade con barba y mechón al frente">
+      <img src="assets/w19.jpg" loading="lazy" width="900" height="1200" alt="Niño con fade y diseño en el costado">
+      <img src="assets/w30.jpg" loading="lazy" width="900" height="1200" alt="Pelo rizado con fade y barba">
+      <img src="assets/w37.jpg" loading="lazy" width="900" height="900" alt="Afeitado completo de cabeza con barba">
+      <img src="assets/w28.jpg" loading="lazy" width="900" height="1200" alt="Fade bajo de nuca con flequillo">
+      <img src="assets/w39.jpg" loading="lazy" width="900" height="900" alt="Rizos permanentes recién hechos, vistos desde arriba">
+      <img src="assets/w09.jpg" loading="lazy" width="900" height="1200" alt="Low fade de perfil">
+      <img src="assets/w32.jpg" loading="lazy" width="900" height="1200" alt="Corte clásico con barba, cabeza inclinada">
+      <img src="assets/w18.jpg" loading="lazy" width="900" height="1200" alt="Niño con fade y línea recta en el costado">
+      <img src="assets/w11.jpg" loading="lazy" width="900" height="1200" alt="Corte recto largo con fade en la nuca">
+      <img src="assets/s41.jpg" loading="lazy" width="1400" height="1400" alt="Mesa de trabajo con tijeras, productos y alfombrilla JRL">
+      <img src="assets/s10.jpg" loading="lazy" width="1400" height="1400" alt="Cliente en la silla frente al espejo de luces">
+    </div>
+  </section>
+
+  <section class="ritual" aria-labelledby="ritual-title">
+    <div class="ritual__text">
+      <h2 id="ritual-title" data-en="The full service">El servicio completo</h2>
+      <p data-en="An hour and fifteen for the cut and the beard, then the rest of the face. Eyebrows if you want them.">Una hora y quince para el corte y la barba, y después el resto de la cara. Cejas si las quieres.</p>
+      <ul class="ritual__list">
+        <li data-en="Face cleanse with exfoliant">Limpieza facial con exfoliante</li>
+        <li data-en="Black mask">Máscara negra</li>
+        <li data-en="Hot towel and steam, with 3 minutes of face and head massage">Toalla caliente y vapor, con 3 minutos de masaje en rostro y cabeza</li>
+        <li data-en="Creams to close the pores">Cremas para cerrar los poros</li>
+      </ul>
+    </div>
+    <img class="ritual__a" src="assets/s33.jpg" loading="lazy" width="1400" height="1400" alt="Cliente con máscara negra aplicada alrededor de los ojos">
+    <img class="ritual__b" src="assets/s35.jpg" loading="lazy" width="1400" height="1400" alt="Vapor sobre el cliente en la silla">
+    <img class="ritual__c" src="assets/s34.jpg" loading="lazy" width="1400" height="1400" alt="Mano con guante negro limpiando la cara del cliente">
+  </section>
+
+  <section class="prices" id="servicios" aria-labelledby="prices-title">
+    <div class="prices__side">
+      <h2 id="prices-title" data-en="Build your visit">Arma tu visita</h2>
+      <img src="assets/w16.jpg" loading="lazy" width="900" height="1200" alt="Skin fade recién hecho, visto de atrás">
+    </div>
+    <form class="menu" id="menu">
+      <fieldset>
+        <legend data-en="Cut and beard">Corte y barba</legend>
+        <label class="item"><input type="radio" name="base" value="30" data-min="40" checked><span class="item__name" data-en="Haircut">Corte de pelo</span><span class="item__price">$30</span><small>40 min</small></label>
+        <label class="item"><input type="radio" name="base" value="35" data-min="60"><span class="item__name" data-en="Haircut and beard">Corte y barba</span><span class="item__price">35</span><small>1 h</small></label>
+        <label class="item"><input type="radio" name="base" value="40" data-min="45"><span class="item__name" data-en="Cut, beard, hot towel">Corte, barba y toalla</span><span class="item__price">40</span><small>45 min</small></label>
+        <label class="item"><input type="radio" name="base" value="45" data-min="60"><span class="item__name" data-en="Cut, beard, towel, steam">Corte, barba, toalla y vapor</span><span class="item__price">45</span><small>1 h</small></label>
+        <label class="item"><input type="radio" name="base" value="70" data-min="75" data-full><span class="item__name" data-en="Full service">Servicio completo</span><span class="item__price">70</span><small data-en="1 h 15, eyebrows included">1 h 15, cejas incluidas</small></label>
+      </fieldset>
+      <fieldset>
+        <legend data-en="Line and shave">Línea y afeitado</legend>
+        <label class="item"><input type="radio" name="base" value="20" data-min="20"><span class="item__name" data-en="Shape up">Alineación</span><span class="item__price">$20</span><small data-en="20 min, line only, no fade">20 min, solo línea, sin fade</small></label>
+        <label class="item"><input type="radio" name="base" value="25" data-min="30"><span class="item__name" data-en="Shape up and beard">Alineación y barba</span><span class="item__price">25</span><small data-en="30 min, no fade">30 min, sin fade</small></label>
+        <label class="item"><input type="radio" name="base" value="35" data-min="30"><span class="item__name" data-en="Full shave, head and beard">Afeitado de cabeza y barba</span><span class="item__price">35</span><small>30 min</small></label>
+        <label class="item"><input type="radio" name="base" value="25" data-min="40"><span class="item__name" data-en="Baby, up to 3 years">Bebé hasta 3 años</span><span class="item__price">25</span><small data-en="40 min, on an adult's lap, no skin fade">40 min, en brazos de un adulto, sin skin fade</small></label>
+      </fieldset>
+      <fieldset>
+        <legend data-en="Larger jobs">Trabajos mayores</legend>
+        <label class="item"><input type="radio" name="base" value="80" data-min="120" data-from><span class="item__name" data-en="Perm">Rizos permanentes</span><span class="item__price">$80+</span><small data-en="2 h, wash included; $100 with a cut, $110 with beard">2 h, lavado incluido; $100 con corte, $110 con barba</small></label>
+        <label class="item"><input type="radio" name="base" value="80" data-min="90" data-from><span class="item__name" data-en="House call">Servicio a domicilio</span><span class="item__price">80+</span><small data-en="1 h 30, price depends on the service and distance">1 h 30, según servicio y distancia</small></label>
+      </fieldset>
+      <fieldset>
+        <legend data-en="Add to it">Súmale</legend>
+        <label class="item"><input type="checkbox" value="5" data-min="10" data-brows><span class="item__name" data-en="Eyebrows">Cejas</span><span class="item__price">$5</span><small>10 min</small></label>
+        <label class="item"><input type="checkbox" value="10" data-min="20" data-from><span class="item__name" data-en="Design">Diseño</span><span class="item__price">10+</span><small data-en="20 min, $5 extra with paint">20 min, $5 extra con pinta</small></label>
+        <label class="item"><input type="checkbox" value="10" data-min="5"><span class="item__name" data-en="Nose or ear waxing">Depilación de nariz u orejas</span><span class="item__price">10</span><small>5 min</small></label>
+        <label class="item"><input type="checkbox" value="10" data-min="10"><span class="item__name" data-en="Wash and shampoo">Lavado y shampoo</span><span class="item__price">10</span><small>10 min</small></label>
+      </fieldset>
+      <div class="total" aria-live="polite">
+        <p class="total__sum"><strong id="total">$30</strong> <span id="time">40 min</span></p>
+        <a class="btn" href="https://fernandobarberrr25.booksy.com/a" data-en="Book this on Booksy">Reservar esto en Booksy</a>
+      </div>
+    </form>
+  </section>
+
+  <section class="stagework" aria-labelledby="stagework-title">
+    <video class="reel" src="assets/reel.mp4" poster="assets/reel-poster.jpg" width="720" height="1280" autoplay muted loop playsinline aria-label="Montaje de cortes de Fernando, sin sonido"></video>
+    <div class="stagework__text">
+      <h2 id="stagework-title" data-en="Also on stage">También sobre el escenario</h2>
+      <p data-en="Between appointments he takes the chair to the barber expos of New York, New Jersey and Long Island, and cuts with people watching.">Entre cita y cita lleva la silla a las expos de barberos de Nueva York, Nueva Jersey y Long Island, y corta con gente mirando.</p>
+      <img src="assets/s20.jpg" loading="lazy" width="1400" height="1400" alt="Fernando cortando sobre un escenario iluminado durante una expo">
+    </div>
+    <p class="shows" aria-label="Hebs 2026, Jersey 2025, Underground 2025, Long Island 2025, The Line Up 2025, Expo Connect 2025"><span aria-hidden="true">Hebs 2026 &nbsp; Jersey 2025 &nbsp; Underground 2025 &nbsp; Long Island 2025 &nbsp; The Line Up 2025 &nbsp; Expo Connect 2025 &nbsp; Hebs 2026 &nbsp; Jersey 2025 &nbsp; Underground 2025 &nbsp; Long Island 2025 &nbsp; The Line Up 2025 &nbsp; Expo Connect 2025 &nbsp; </span></p>
+  </section>
+
+  <section class="voices" aria-labelledby="voices-title">
+    <h2 id="voices-title" data-en="4.9 from 70 reviews">4,9 de 70 reseñas</h2>
+    <blockquote class="voices__lead"><p>“Gracias por darme ese boost de ánimo con un buen corte. Eres grande bro.”</p><footer>Andrés, <span data-en="haircut">corte de pelo</span></footer></blockquote>
+    <img class="voices__pic" src="assets/s22.jpg" loading="lazy" width="1400" height="1400" alt="Fernando cortando en un local de ladrillo con público alrededor">
+    <blockquote class="voices__l"><p>“Excelente servicio, muy buena atención y un buen ambiente, 100% satisfecho y recomendado.”</p><footer>Brahyam, <span data-en="haircut">corte de pelo</span></footer></blockquote>
+    <blockquote class="voices__r"><p>“Amazing as always!!! Increíble trabajo como siempre!”</p><footer>Tyler, <span data-en="shape up and beard">alineación y barba</span></footer></blockquote>
+  </section>
+
+  <section class="extras" aria-labelledby="extras-title">
+    <img src="assets/s40.jpg" loading="lazy" width="1400" height="1400" alt="Maletín dorado y mochila de barbero listos para salir">
+    <div>
+      <h2 id="extras-title" data-en="He also comes to you">También va a tu casa</h2>
+      <p data-en="The house call packs the case and the bag and sets up where you are, from $80 depending on the service and the distance. And if you liked how your hair sits, the shop sells the waxes, pomades, gels and texturizing powders at $10 each.">El servicio a domicilio carga el maletín y la mochila y arma la silla donde estés, desde $80 según el servicio y la distancia. Y si te gustó cómo te quedó, en el local vende ceras, pomadas, geles y polvos texturizantes a $10 cada uno.</p>
+      <a class="link" href="https://fernandobarberrr25.booksy.com/a" data-en="Book a house call">Pedir domicilio</a>
+    </div>
+  </section>
+
+  <section class="visit" id="visita" aria-labelledby="visit-title">
+    <img class="visit__pic" src="assets/store.jpg" loading="lazy" width="1400" height="1693" alt="Fachada del local en 35-60 94th St con el interior de la barbería">
+    <div class="visit__card">
+      <img src="assets/logo.jpg" width="96" height="96" loading="lazy" alt="Logo de Fernando Barber">
+      <h2 id="visit-title" data-en="Come by">Pasa por acá</h2>
+      <p><a href="https://www.google.com/maps/search/?api=1&query=35-60+94th+St+Jackson+Heights+NY+11372">35-60 94th St<br>Jackson Heights, NY 11372</a></p>
+      <table>
+        <caption class="sr" data-en="Opening hours">Horario</caption>
+        <tr data-day="1"><th scope="row" data-en="Monday">Lunes</th><td>10:00 – 7:40</td></tr>
+        <tr data-day="2"><th scope="row" data-en="Tuesday">Martes</th><td data-en="Closed">Cerrado</td></tr>
+        <tr data-day="3"><th scope="row" data-en="Wednesday">Miércoles</th><td>10:00 – 7:40</td></tr>
+        <tr data-day="4"><th scope="row" data-en="Thursday">Jueves</th><td>10:00 – 8:40</td></tr>
+        <tr data-day="5"><th scope="row" data-en="Friday">Viernes</th><td>10:00 – 8:40</td></tr>
+        <tr data-day="6"><th scope="row" data-en="Saturday">Sábado</th><td>10:00 – 8:40</td></tr>
+        <tr data-day="0"><th scope="row" data-en="Sunday">Domingo</th><td>10:00 – 7:00</td></tr>
+      </table>
+      <a class="btn" href="https://fernandobarberrr25.booksy.com/a" data-en="Book on Booksy">Reservar en Booksy</a>
+    </div>
+  </section>
+</main>
+
+<footer class="end">
+  <p data-en="Fernando Guerrero, barber in Queens">Fernando Guerrero, barbero en Queens</p>
+  <p class="end__links"><a href="https://fernandobarberrr25.booksy.com/a">Booksy</a><a href="https://www.instagram.com/fernando_barberrr25/">Instagram</a><a href="https://www.instagram.com/nextlevelbarbershopbyanllelis/">Next Level</a></p>
+  <p class="end__right">© 2026</p>
+</footer>
+
+<a class="stub" id="stub" href="https://fernandobarberrr25.booksy.com/a" data-en="Book">Reservar</a>
+
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" class="no-js">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,7 +7,13 @@
 <meta name="description" content="Fades, líneas, barba y toalla caliente con Fernando Guerrero en 35-60 94th St, Jackson Heights, Queens. Solo con cita, por Booksy.">
 <meta property="og:title" content="Fernando Barber | Jackson Heights, Queens">
 <meta property="og:description" content="Fades, líneas y barba. Solo con cita. 4,9 en Booksy.">
-<meta property="og:image" content="assets/s24.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jonathaanbl.github.io/feno-barber-website/">
+<meta property="og:image" content="https://jonathaanbl.github.io/feno-barber-website/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://jonathaanbl.github.io/feno-barber-website/">
 <meta name="theme-color" content="#0f0e0e">
 <link rel="icon" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,24 +22,35 @@
 <link rel="stylesheet" href="styles.css">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BarberShop","name":"Fernando Barber","employee":"Fernando Guerrero","image":"assets/s24.jpg","priceRange":"$$",
+{"@context":"https://schema.org","@type":"BarberShop","name":"Fernando Barber","employee":"Fernando Guerrero","image":"https://jonathaanbl.github.io/feno-barber-website/assets/og.jpg","priceRange":"$$",
 "address":{"@type":"PostalAddress","streetAddress":"35-60 94th St","addressLocality":"Jackson Heights","addressRegion":"NY","postalCode":"11372","addressCountry":"US"},
 "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"70"},
-"url":"https://fernandobarberrr25.booksy.com/a"}
+"url":"https://jonathaanbl.github.io/feno-barber-website/","sameAs":["https://fernandobarberrr25.booksy.com/a","https://www.instagram.com/fernando_barberrr25/"]}
 </script>
 </head>
 <body>
 <canvas id="pole" aria-hidden="true"></canvas>
+<svg id="pole-flat" viewBox="0 0 120 520" aria-hidden="true" hidden>
+  <defs>
+    <pattern id="stripes" width="120" height="240" patternUnits="userSpaceOnUse" patternTransform="skewY(-35)">
+      <rect width="120" height="60" fill="#c4121a"/><rect y="60" width="120" height="60" fill="#f4f1ea"/>
+      <rect y="120" width="120" height="60" fill="#0f3b8c"/><rect y="180" width="120" height="60" fill="#f4f1ea"/>
+    </pattern>
+    <clipPath id="tube"><rect x="16" y="50" width="88" height="420"/></clipPath>
+  </defs>
+  <g clip-path="url(#tube)"><rect class="flat-run" x="16" y="-240" width="88" height="960" fill="url(#stripes)"/></g>
+  <path fill="#d5d5d5" d="M48 0h24l4 22 18 8 14 20H12l14-20 18-8zM12 470h96l-14 20-18 8-4 22H48l-4-22-18-8z"/>
+</svg>
 
 <nav class="bar" aria-label="Principal">
   <a href="#trabajo" data-en="Work">Trabajo</a>
   <a href="#servicios" data-en="Prices">Precios</a>
   <a href="#visita" data-en="Visit">Visita</a>
-  <button id="lang" type="button" aria-label="Read in English" data-en-label="Leer en español">EN</button>
+  <button id="lang" type="button" aria-label="Read in English">EN</button>
 </nav>
 
 <header class="hero">
-  <div class="hero__clip"><img class="hero__room" src="assets/hero.jpg" width="1600" height="900" alt="Fernando cortando el pelo a un cliente de pelo platinado, con luz de aro sobre la gorra" fetchpriority="high"></div>
+  <div class="hero__clip"><img class="hero__room" src="assets/hero-900.webp" srcset="assets/hero-480.webp 480w, assets/hero-900.webp 900w, assets/hero-1400.webp 1400w, assets/hero-1754.webp 1754w" sizes="(max-width: 800px) 200vw, 100vw" width="1754" height="986" data-en-alt="Fernando cutting a client's platinum hair, with a ring light on his cap" alt="Fernando cortando el pelo a un cliente de pelo platinado, con luz de aro sobre la gorra" fetchpriority="high"></div>
   <div class="card" id="card">
     <h1 class="card__title"><span>Fernando</span> <span>Barber</span> <span>Queens</span></h1>
     <div class="card__body">
@@ -53,17 +70,17 @@
     <div class="step">
       <h2 id="stage-title" data-en="One pole, two flags">Un poste, dos banderas</h2>
       <p data-en="Red, white and blue. The colours of the barber pole, and of the Chile that Fernando comes from. That is why this pole carries the star.">Rojo, blanco y azul. Los colores del poste de barbero y los de Chile, de donde viene Fernando. Por eso este poste lleva la estrella.</p>
-      <img src="assets/logo-big.jpg" width="640" height="640" alt="Logo de Fernando Barber, con navaja y dos postes rojos y blancos">
+      <img loading="lazy" src="assets/logo-big-900.webp" srcset="assets/logo-big-480.webp 480w, assets/logo-big-900.webp 900w, assets/logo-big-1169.webp 1169w" sizes="30vw" width="1169" height="1169" data-en-alt="Fernando Barber logo, with a razor and two red and white poles" alt="Logo de Fernando Barber, con navaja y dos postes rojos y blancos">
     </div>
     <div class="step">
       <h3 data-en="The other is Queens">La otra es Queens</h3>
       <p data-en="He works on 94th Street in Jackson Heights, inside Next Level Barbershop by Anllelis. Spanish or English, whichever you speak.">Corta en la calle 94 de Jackson Heights, dentro de Next Level Barbershop by Anllelis. En español o en inglés, como prefieras.</p>
-      <img src="assets/store.jpg" width="1400" height="1693" alt="Fachada del local en la calle 94 de Jackson Heights">
+      <img loading="lazy" src="assets/store-900.webp" srcset="assets/store-480.webp 480w, assets/store-900.webp 900w, assets/store-1170.webp 1170w" sizes="30vw" width="1170" height="1414" data-en-alt="Shop front on 94th Street in Jackson Heights" alt="Fachada del local en la calle 94 de Jackson Heights">
     </div>
     <div class="step">
       <h3 data-en="Your time is yours">Tu hora es tuya</h3>
       <p data-en="By appointment only. You pick the time on Booksy, you arrive, and a haircut gets its full 40 minutes.">Solo con cita. Eliges la hora en Booksy, llegas, y un corte tiene sus 40 minutos completos.</p>
-      <img src="assets/s24.jpg" width="1400" height="1867" alt="Fernando trabajando un corte platinado, concentrado">
+      <img loading="lazy" src="assets/s24-900.webp" srcset="assets/s24-480.webp 480w, assets/s24-900.webp 900w, assets/s24-1400.webp 1400w, assets/s24-1755.webp 1755w" sizes="30vw" width="1755" height="2340" data-en-alt="Fernando focused on a platinum cut" alt="Fernando trabajando un corte platinado, concentrado">
     </div>
   </section>
 
@@ -73,30 +90,30 @@
       <p class="statement__note" data-en="That is why the photos below were taken right after the cut, in the chair.">Por eso las fotos de abajo son recién cortadas, en la silla.</p>
     </div>
     <div class="statement__pics">
-      <img src="assets/w27.jpg" loading="lazy" width="900" height="1200" alt="Taper fade limpio visto de costado">
-      <img src="assets/w06.jpg" loading="lazy" width="900" height="1200" alt="Fade alto en la nuca, junto a un tatuaje en el cuello">
+      <img src="assets/w27-900.webp" srcset="assets/w27-480.webp 480w, assets/w27-900.webp 900w, assets/w27-1400.webp 1400w, assets/w27-1800.webp 1800w" sizes="(max-width: 800px) 46vw, 24vw" loading="lazy" width="2340" height="2340" data-en-alt="Clean taper fade from the side" alt="Taper fade limpio visto de costado">
+      <img src="assets/w06-900.webp" srcset="assets/w06-480.webp 480w, assets/w06-900.webp 900w, assets/w06-1400.webp 1400w, assets/w06-1800.webp 1800w" sizes="(max-width: 800px) 46vw, 24vw" loading="lazy" width="2163" height="2884" data-en-alt="High fade at the nape, next to a neck tattoo" alt="Fade alto en la nuca, junto a un tatuaje en el cuello">
     </div>
   </section>
 
   <section class="work" id="trabajo" aria-labelledby="work-title">
     <h2 id="work-title" data-en="The work, 16 cuts">El trabajo, 16 cortes</h2>
     <div class="row" tabindex="0" role="group" aria-labelledby="work-title">
-      <img src="assets/w13.jpg" loading="lazy" width="900" height="1200" alt="Low fade con barba delineada">
-      <img src="assets/w05.jpg" loading="lazy" width="900" height="1200" alt="Pelo ondulado con diseño en la nuca">
-      <img src="assets/w23.jpg" loading="lazy" width="900" height="1200" alt="Barba larga con una equis rapada en el costado">
-      <img src="assets/w08.jpg" loading="lazy" width="900" height="1200" alt="Fade con volumen arriba y barba corta">
-      <img src="assets/w31.jpg" loading="lazy" width="900" height="1200" alt="Fade con barba y mechón al frente">
-      <img src="assets/w19.jpg" loading="lazy" width="900" height="1200" alt="Niño con fade y diseño en el costado">
-      <img src="assets/w30.jpg" loading="lazy" width="900" height="1200" alt="Pelo rizado con fade y barba">
-      <img src="assets/w37.jpg" loading="lazy" width="900" height="900" alt="Afeitado completo de cabeza con barba">
-      <img src="assets/w28.jpg" loading="lazy" width="900" height="1200" alt="Fade bajo de nuca con flequillo">
-      <img src="assets/w39.jpg" loading="lazy" width="900" height="900" alt="Rizos permanentes recién hechos, vistos desde arriba">
-      <img src="assets/w09.jpg" loading="lazy" width="900" height="1200" alt="Low fade de perfil">
-      <img src="assets/w32.jpg" loading="lazy" width="900" height="1200" alt="Corte clásico con barba, cabeza inclinada">
-      <img src="assets/w18.jpg" loading="lazy" width="900" height="1200" alt="Niño con fade y línea recta en el costado">
-      <img src="assets/w11.jpg" loading="lazy" width="900" height="1200" alt="Corte recto largo con fade en la nuca">
-      <img src="assets/s41.jpg" loading="lazy" width="1400" height="1400" alt="Mesa de trabajo con tijeras, productos y alfombrilla JRL">
-      <img src="assets/s10.jpg" loading="lazy" width="1400" height="1400" alt="Cliente en la silla frente al espejo de luces">
+      <img src="assets/w13-900.webp" srcset="assets/w13-480.webp 480w, assets/w13-900.webp 900w, assets/w13-1400.webp 1400w, assets/w13-1755.webp 1755w" sizes="(max-width: 800px) 46vw, 18vw" loading="lazy" width="1755" height="2340" data-en-alt="Low fade with a lined-up beard" alt="Low fade con barba delineada">
+      <img src="assets/w05-900.webp" srcset="assets/w05-480.webp 480w, assets/w05-900.webp 900w, assets/w05-1400.webp 1400w, assets/w05-1755.webp 1755w" sizes="(max-width: 800px) 46vw, 18vw" loading="lazy" width="1755" height="2340" data-en-alt="Wavy hair with a design at the nape" alt="Pelo ondulado con diseño en la nuca">
+      <img src="assets/w23-900.webp" srcset="assets/w23-480.webp 480w, assets/w23-900.webp 900w, assets/w23-1400.webp 1400w, assets/w23-1755.webp 1755w" sizes="(max-width: 800px) 46vw, 18vw" loading="lazy" width="1755" height="2340" data-en-alt="Long beard with an X shaved on the side" alt="Barba larga con una equis rapada en el costado">
+      <img src="assets/w08-900.webp" srcset="assets/w08-480.webp 480w, assets/w08-900.webp 900w, assets/w08-1400.webp 1400w, assets/w08-1800.webp 1800w" sizes="(max-width: 800px) 46vw, 18vw" loading="lazy" width="2243" height="2991" data-en-alt="Fade with volume on top and a short beard" alt="Fade con volumen arriba y barba corta">
+      <img src="assets/w31-900.webp" srcset="assets/w31-480.webp 480w, assets/w31-900.webp 900w, assets/w31-1400.webp 1400w, assets/w31-1800.webp 1800w" sizes="(max-width: 800px) 46vw, 18vw" loading="lazy" width="2340" height="2340" data-en-alt="Fade with beard and a fringe" alt="Fade con barba y mechón al frente">
+      <img src="assets/w19-900.webp" srcset="assets/w19-480.webp 480w, assets/w19-900.webp 900w, assets/w19-1400.webp 1400w, assets/w19-1755.webp 1755w" sizes="(max-width: 800px) 46vw, 18vw" loading="lazy" width="1755" height="2340" data-en-alt="Boy with a fade and a side design" alt="Niño con fade y diseño en el costado">
+      <img src="assets/w30-900.webp" srcset="assets/w30-480.webp 480w, assets/w30-900.webp 900w, assets/w30-1400.webp 1400w, assets/w30-1800.webp 1800w" sizes="(max-width: 800px) 46vw, 18vw" loading="lazy" width="2340" height="2340" data-en-alt="Curly hair with a fade and beard" alt="Pelo rizado con fade y barba">
+      <img src="assets/w37-900.webp" srcset="assets/w37-480.webp 480w, assets/w37-900.webp 900w, assets/w37-1400.webp 1400w, assets/w37-1536.webp 1536w" sizes="(max-width: 800px) 46vw, 18vw" loading="lazy" width="1536" height="1536" data-en-alt="Fully shaved head with a beard" alt="Afeitado completo de cabeza con barba">
+      <img src="assets/w28-900.webp" srcset="assets/w28-480.webp 480w, assets/w28-900.webp 900w, assets/w28-1400.webp 1400w, assets/w28-1800.webp 1800w" sizes="(max-width: 800px) 46vw, 18vw" loading="lazy" width="2340" height="2340" data-en-alt="Low nape fade with a fringe" alt="Fade bajo de nuca con flequillo">
+      <img src="assets/w39-900.webp" srcset="assets/w39-480.webp 480w, assets/w39-900.webp 900w, assets/w39-1400.webp 1400w, assets/w39-1800.webp 1800w" sizes="(max-width: 800px) 46vw, 18vw" loading="lazy" width="2340" height="2340" data-en-alt="Fresh perm seen from above" alt="Rizos permanentes recién hechos, vistos desde arriba">
+      <img src="assets/w09-900.webp" srcset="assets/w09-480.webp 480w, assets/w09-900.webp 900w, assets/w09-1400.webp 1400w, assets/w09-1800.webp 1800w" sizes="(max-width: 800px) 46vw, 18vw" loading="lazy" width="2183" height="2910" data-en-alt="Low fade in profile" alt="Low fade de perfil">
+      <img src="assets/w32-900.webp" srcset="assets/w32-480.webp 480w, assets/w32-900.webp 900w, assets/w32-1400.webp 1400w, assets/w32-1800.webp 1800w" sizes="(max-width: 800px) 46vw, 18vw" loading="lazy" width="2340" height="2340" data-en-alt="Classic cut with beard, head tilted" alt="Corte clásico con barba, cabeza inclinada">
+      <img src="assets/w18-900.webp" srcset="assets/w18-480.webp 480w, assets/w18-900.webp 900w, assets/w18-1400.webp 1400w, assets/w18-1800.webp 1800w" sizes="(max-width: 800px) 46vw, 18vw" loading="lazy" width="2149" height="2865" data-en-alt="Boy with a fade and a straight side line" alt="Niño con fade y línea recta en el costado">
+      <img src="assets/w11-900.webp" srcset="assets/w11-480.webp 480w, assets/w11-900.webp 900w, assets/w11-1400.webp 1400w, assets/w11-1800.webp 1800w" sizes="(max-width: 800px) 46vw, 18vw" loading="lazy" width="2238" height="2984" data-en-alt="Long straight cut with a fade at the nape" alt="Corte recto largo con fade en la nuca">
+      <img src="assets/s41-900.webp" srcset="assets/s41-480.webp 480w, assets/s41-900.webp 900w, assets/s41-1400.webp 1400w, assets/s41-1800.webp 1800w" sizes="(max-width: 800px) 46vw, 18vw" loading="lazy" width="2160" height="2160" data-en-alt="Work table with scissors, products and a JRL mat" alt="Mesa de trabajo con tijeras, productos y alfombrilla JRL">
+      <img src="assets/s10-900.webp" srcset="assets/s10-480.webp 480w, assets/s10-900.webp 900w, assets/s10-1400.webp 1400w, assets/s10-1755.webp 1755w" sizes="(max-width: 800px) 46vw, 18vw" loading="lazy" width="1755" height="2340" data-en-alt="Client in the chair facing the lit mirror" alt="Cliente en la silla frente al espejo de luces">
     </div>
   </section>
 
@@ -111,15 +128,15 @@
         <li data-en="Creams to close the pores">Cremas para cerrar los poros</li>
       </ul>
     </div>
-    <img class="ritual__a" src="assets/s33.jpg" loading="lazy" width="1400" height="1400" alt="Cliente con máscara negra aplicada alrededor de los ojos">
-    <img class="ritual__b" src="assets/s35.jpg" loading="lazy" width="1400" height="1400" alt="Vapor sobre el cliente en la silla">
-    <img class="ritual__c" src="assets/s34.jpg" loading="lazy" width="1400" height="1400" alt="Mano con guante negro limpiando la cara del cliente">
+    <img class="ritual__a" src="assets/s33-894.webp" srcset="assets/s33-480.webp 480w, assets/s33-894.webp 894w" sizes="(max-width: 800px) 100vw, 50vw" loading="lazy" width="894" height="894" data-en-alt="Client with a black mask around the eyes" alt="Cliente con máscara negra aplicada alrededor de los ojos">
+    <img class="ritual__b" src="assets/s35-900.webp" srcset="assets/s35-480.webp 480w, assets/s35-900.webp 900w, assets/s35-984.webp 984w" sizes="50vw" loading="lazy" width="984" height="984" data-en-alt="Steam over the client in the chair" alt="Vapor sobre el cliente en la silla">
+    <img class="ritual__c" src="assets/s34-900.webp" srcset="assets/s34-480.webp 480w, assets/s34-900.webp 900w, assets/s34-1206.webp 1206w" sizes="50vw" loading="lazy" width="1206" height="1206" data-en-alt="Black-gloved hand cleaning the client's face" alt="Mano con guante negro limpiando la cara del cliente">
   </section>
 
   <section class="prices" id="servicios" aria-labelledby="prices-title">
     <div class="prices__side">
       <h2 id="prices-title" data-en="Build your visit">Arma tu visita</h2>
-      <img src="assets/w16.jpg" loading="lazy" width="900" height="1200" alt="Skin fade recién hecho, visto de atrás">
+      <img src="assets/w16-900.webp" srcset="assets/w16-480.webp 480w, assets/w16-900.webp 900w, assets/w16-1400.webp 1400w, assets/w16-1800.webp 1800w" sizes="(max-width: 800px) 60vw, 25vw" loading="lazy" width="2241" height="2987" data-en-alt="Fresh skin fade seen from behind" alt="Skin fade recién hecho, visto de atrás">
     </div>
     <form class="menu" id="menu">
       <fieldset>
@@ -157,11 +174,11 @@
   </section>
 
   <section class="stagework" aria-labelledby="stagework-title">
-    <video class="reel" src="assets/reel.mp4" poster="assets/reel-poster.jpg" width="720" height="1280" autoplay muted loop playsinline aria-label="Montaje de cortes de Fernando, sin sonido"></video>
+    <video class="reel" src="assets/reel.mp4" poster="assets/reel-poster.webp" width="720" height="1280" preload="none" muted loop playsinline aria-label="Montaje de cortes de Fernando, sin sonido" data-en-aria="Silent montage of Fernando's cuts"></video>
     <div class="stagework__text">
       <h2 id="stagework-title" data-en="Also on stage">También sobre el escenario</h2>
       <p data-en="Between appointments he takes the chair to the barber expos of New York, New Jersey and Long Island, and cuts with people watching.">Entre cita y cita lleva la silla a las expos de barberos de Nueva York, Nueva Jersey y Long Island, y corta con gente mirando.</p>
-      <img src="assets/s20.jpg" loading="lazy" width="1400" height="1400" alt="Fernando cortando sobre un escenario iluminado durante una expo">
+      <img src="assets/s20-900.webp" srcset="assets/s20-480.webp 480w, assets/s20-900.webp 900w, assets/s20-1400.webp 1400w, assets/s20-1755.webp 1755w" sizes="(max-width: 800px) 100vw, 56vw" loading="lazy" width="1755" height="2340" data-en-alt="Fernando cutting on a lit stage at an expo" alt="Fernando cortando sobre un escenario iluminado durante una expo">
     </div>
     <p class="shows" aria-label="Hebs 2026, Jersey 2025, Underground 2025, Long Island 2025, The Line Up 2025, Expo Connect 2025"><span aria-hidden="true">Hebs 2026 &nbsp; Jersey 2025 &nbsp; Underground 2025 &nbsp; Long Island 2025 &nbsp; The Line Up 2025 &nbsp; Expo Connect 2025 &nbsp; Hebs 2026 &nbsp; Jersey 2025 &nbsp; Underground 2025 &nbsp; Long Island 2025 &nbsp; The Line Up 2025 &nbsp; Expo Connect 2025 &nbsp; </span></p>
   </section>
@@ -169,13 +186,13 @@
   <section class="voices" aria-labelledby="voices-title">
     <h2 id="voices-title" data-en="4.9 from 70 reviews">4,9 de 70 reseñas</h2>
     <blockquote class="voices__lead"><p>“Gracias por darme ese boost de ánimo con un buen corte. Eres grande bro.”</p><footer>Andrés, <span data-en="haircut">corte de pelo</span></footer></blockquote>
-    <img class="voices__pic" src="assets/s22.jpg" loading="lazy" width="1400" height="1400" alt="Fernando cortando en un local de ladrillo con público alrededor">
+    <img class="voices__pic" src="assets/s22-900.webp" srcset="assets/s22-480.webp 480w, assets/s22-900.webp 900w, assets/s22-1400.webp 1400w, assets/s22-1755.webp 1755w" sizes="(max-width: 800px) 100vw, 30vw" loading="lazy" width="1755" height="2340" data-en-alt="Fernando cutting in a brick venue with a crowd around" alt="Fernando cortando en un local de ladrillo con público alrededor">
     <blockquote class="voices__l"><p>“Excelente servicio, muy buena atención y un buen ambiente, 100% satisfecho y recomendado.”</p><footer>Brahyam, <span data-en="haircut">corte de pelo</span></footer></blockquote>
     <blockquote class="voices__r"><p>“Amazing as always!!! Increíble trabajo como siempre!”</p><footer>Tyler, <span data-en="shape up and beard">alineación y barba</span></footer></blockquote>
   </section>
 
   <section class="extras" aria-labelledby="extras-title">
-    <img src="assets/s40.jpg" loading="lazy" width="1400" height="1400" alt="Maletín dorado y mochila de barbero listos para salir">
+    <img src="assets/s40-900.webp" srcset="assets/s40-480.webp 480w, assets/s40-900.webp 900w, assets/s40-1400.webp 1400w, assets/s40-1800.webp 1800w" sizes="(max-width: 800px) 100vw, 56vw" loading="lazy" width="2340" height="2340" data-en-alt="Gold case and barber backpack ready to go" alt="Maletín dorado y mochila de barbero listos para salir">
     <div>
       <h2 id="extras-title" data-en="He also comes to you">También va a tu casa</h2>
       <p data-en="The house call packs the case and the bag and sets up where you are, from $80 depending on the service and the distance. And if you liked how your hair sits, the shop sells the waxes, pomades, gels and texturizing powders at $10 each.">El servicio a domicilio carga el maletín y la mochila y arma la silla donde estés, desde $80 según el servicio y la distancia. Y si te gustó cómo te quedó, en el local vende ceras, pomadas, geles y polvos texturizantes a $10 cada uno.</p>
@@ -184,9 +201,9 @@
   </section>
 
   <section class="visit" id="visita" aria-labelledby="visit-title">
-    <img class="visit__pic" src="assets/store.jpg" loading="lazy" width="1400" height="1693" alt="Fachada del local en 35-60 94th St con el interior de la barbería">
+    <img class="visit__pic" src="assets/store-900.webp" srcset="assets/store-480.webp 480w, assets/store-900.webp 900w, assets/store-1170.webp 1170w" sizes="100vw" loading="lazy" width="1170" height="1414" data-en-alt="Shop front at 35-60 94th St with the barbershop interior" alt="Fachada del local en 35-60 94th St con el interior de la barbería">
     <div class="visit__card">
-      <img src="assets/logo.jpg" width="96" height="96" loading="lazy" alt="Logo de Fernando Barber">
+      <img src="assets/logo.jpg" width="96" height="96" loading="lazy" data-en-alt="Fernando Barber logo" alt="Logo de Fernando Barber">
       <h2 id="visit-title" data-en="Come by">Pasa por acá</h2>
       <p><a href="https://www.google.com/maps/search/?api=1&query=35-60+94th+St+Jackson+Heights+NY+11372">35-60 94th St<br>Jackson Heights, NY 11372</a></p>
       <table>

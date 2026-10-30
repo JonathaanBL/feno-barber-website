@@ -37,6 +37,13 @@ p { margin: 0; }
 
 #pole { position: fixed; inset: 0; width: 100%; height: 100svh; z-index: 1; pointer-events: none; }
 
+#pole-flat {
+  position: fixed; z-index: 1; right: 10vw; top: 7svh; height: 86svh; width: auto; pointer-events: none;
+}
+#pole-flat[hidden] { display: none; }
+.flat-run { animation: pole-run 6s linear infinite; }
+@keyframes pole-run { to { transform: translateY(240px); } }
+
 .bar {
   position: absolute; top: 0; right: 0; z-index: 3; padding: 18px var(--m);
   display: flex; gap: clamp(16px, 2vw, 32px); align-items: center;
@@ -119,7 +126,7 @@ p { margin: 0; }
 .row.dragging { cursor: grabbing; scroll-snap-type: none; user-select: none; }
 .row img { -webkit-user-drag: none; }
 .row img {
-  flex: 0 0 clamp(240px, 27vw, 420px); aspect-ratio: 3/4; object-fit: cover; scroll-snap-align: center;
+  flex: 0 0 clamp(170px, 18vw, 280px); aspect-ratio: 3/4; object-fit: cover; scroll-snap-align: center;
   transition: transform .4s var(--ease);
 }
 .row img:hover { transform: scale(1.03); }
@@ -233,6 +240,8 @@ legend { font-size: var(--step-lead); font-weight: 500; padding: 0; margin-botto
 .js .rise.in { opacity: 1; transform: none; }
 
 @media (max-width: 800px) {
+  #pole-flat { right: auto; left: 50%; top: 4svh; height: 44svh; transform: translateX(-50%); }
+  .hero__room { object-position: 74% 50%; } /* keeps Fernando in frame on a tall screen */
   .hero { align-items: end; padding: 56px var(--m) var(--m); }
   .card { width: 100%; margin: 0; min-height: 58svh; padding: 20px; }
   h2, h3, .card__title, .shows { font-stretch: 112%; }
@@ -252,7 +261,7 @@ legend { font-size: var(--step-lead); font-weight: 500; padding: 0; margin-botto
   .stair span:nth-child(4) { padding-left: 15vw; }
   .stair span:nth-child(5) { padding-left: 20vw; }
   .statement__pics { order: 2; }
-  .row img { flex-basis: 66vw; }
+  .row img { flex-basis: 46vw; }
   .ritual { grid-template-columns: 1fr 1fr; }
   .ritual__text { grid-column: 1 / -1; position: static; padding: 0; }
   .ritual__a { grid-column: 1 / -1; grid-row: auto; }
@@ -280,7 +289,7 @@ legend { font-size: var(--step-lead); font-weight: 500; padding: 0; margin-botto
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .hero__room, .shows span { animation: none; }
+  .hero__room, .shows span, .flat-run { animation: none; }
   .js .rise { opacity: 1; transform: none; transition: none; }
   .btn:hover { transform: none; }
 }

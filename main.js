@@ -1,5 +1,5 @@
 const root = document.documentElement;
-root.classList.add('js');
+root.classList.replace('no-js', 'js');
 const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
@@ -7,17 +7,26 @@ const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 /* Language: Spanish lives in the markup, English in data-en */
 let lang = 'es';
 const texts = $$('[data-en]').map(el => ({ el, es: el.textContent, en: el.dataset.en }));
+const alts = $$('[data-en-alt]').map(el => ({ el, es: el.alt, en: el.dataset.enAlt }));
+const arias = $$('[data-en-aria]').map(el => ({ el, es: el.getAttribute('aria-label'), en: el.dataset.enAria }));
+const titles = { es: document.title, en: 'Fernando Barber | Barber in Jackson Heights, Queens' };
 const langBtn = $('#lang');
 function setLang(next) {
   lang = next;
   root.lang = next;
   texts.forEach(t => { t.el.textContent = t[next]; });
+  alts.forEach(t => { t.el.alt = t[next]; });
+  arias.forEach(t => { t.el.setAttribute('aria-label', t[next]); });
+  document.title = titles[next];
   langBtn.textContent = next === 'es' ? 'EN' : 'ES';
   langBtn.setAttribute('aria-label', next === 'es' ? 'Read in English' : 'Leer en español');
   paintOpen();
   sum();
 }
-langBtn.addEventListener('click', () => setLang(lang === 'es' ? 'en' : 'es'));
+langBtn.addEventListener('click', () => {
+  setLang(lang === 'es' ? 'en' : 'es');
+  try { localStorage.setItem('lang', lang); } catch {} // private windows may refuse storage
+});
 
 /* Open now, always in New York time. Minutes from midnight, from his Booksy hours. */
 const HOURS = { 0: [600, 1140], 1: [600, 1180], 2: null, 3: [600, 1180], 4: [600, 1240], 5: [600, 1240], 6: [600, 1240] };
@@ -64,7 +73,16 @@ function sum() {
 menu.addEventListener('change', sum);
 menu.addEventListener('submit', e => e.preventDefault());
 
-setLang('es');
+let savedLang = null;
+try { savedLang = localStorage.getItem('lang'); } catch {}
+setLang(savedLang === 'en' ? 'en' : 'es');
+
+/* The reel only downloads and plays while it is near the screen */
+const reel = $('.reel');
+if (!still) new IntersectionObserver(([e]) => {
+  if (e.isIntersecting) reel.play().catch(() => {});
+  else reel.pause();
+}, { rootMargin: '200px' }).observe(reel);
 
 /* Entrances: each part of a section rises in turn */
 const parts = 'h2, h3, .step p, .stair, .statement__note, .statement__pics img, .ritual__text p, .ritual__list, .ritual > img, .prices__side img, .menu fieldset, .reel, .stagework__text p, .stagework__text img, blockquote, .extras img, .extras p, .extras .link, .visit__card, .row img';
@@ -117,16 +135,25 @@ const pole = { scroll() {} };
 addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
+function flatPole() {
+  canvas.remove();
+  const flat = $('#pole-flat');
+  const stage = $('.stage');
+  flat.removeAttribute('hidden'); // SVG elements have no .hidden property
+  pole.scroll = y => { flat.style.visibility = y < stage.offsetTop + stage.offsetHeight ? 'visible' : 'hidden'; };
+  onScroll();
+}
+
 (async () => {
   let THREE, RoomEnvironment;
   try {
     THREE = await import('three');
     ({ RoomEnvironment } = await import('three/addons/environments/RoomEnvironment.js'));
-  } catch { canvas.remove(); return; }
+  } catch { flatPole(); return; }
 
   let renderer;
   try { renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true }); }
-  catch { canvas.remove(); return; }
+  catch { flatPole(); return; }
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
